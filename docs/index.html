@@ -4,248 +4,385 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>FAQ-PLASMA</title>
+
   <style>
     :root{
-      /* Radom purple: if you know the exact hex from the brandbook, replace it here */
-      --radom-purple: #4B2E83;
-      --text: #ffffff;
-      --muted: rgba(255,255,255,0.82);
-      --card: rgba(255,255,255,0.08);
-      --border: rgba(255,255,255,0.18);
-      --link: #ffffff;
+      /* Approx. Radom footer purple (adjust if you have exact hex from brandbook) */
+      --radom-purple: #5f61a8;
+
+      --white: #ffffff;
+      --white-90: rgba(255,255,255,0.90);
+      --white-80: rgba(255,255,255,0.80);
+      --white-70: rgba(255,255,255,0.70);
+
+      --rule: rgba(255,255,255,0.28);
     }
 
-    html, body { height: 100%; }
+    *{ box-sizing: border-box; }
+
+    html, body{ height:100%; }
+
     body{
-      margin: 0;
+      margin:0;
       background: var(--radom-purple);
-      color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
+      color: var(--white);
+      font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
       line-height: 1.6;
     }
 
-    .wrap{
-      max-width: 980px;
+    a{
+      color: var(--white);
+      text-decoration: none;
+    }
+    a:hover{ text-decoration: underline; }
+
+    .container{
+      max-width: 1120px;
       margin: 0 auto;
-      padding: 32px 20px 60px;
+      padding: 48px 24px 0;
     }
 
-    header{
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 16px;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 14px;
-      margin-bottom: 26px;
+    /* Top bar (simple, footer-like) */
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom: 40px;
     }
 
     .brand{
-      font-size: 28px;
-      font-weight: 800;
-      letter-spacing: 0.5px;
+      font-size: 30px;
+      letter-spacing: 0.08em;
+      font-weight: 500;
+      text-transform: uppercase;
     }
 
-    .nav a{
-      color: var(--link);
-      text-decoration: none;
+    .nav{
+      display:flex;
+      gap:22px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+      font-size: 13px;
       font-weight: 600;
-      opacity: 0.95;
+      color: var(--white-90);
     }
-    .nav a:hover{ text-decoration: underline; }
+    .nav a{ color: var(--white-90); }
+    .nav a:hover{ color: var(--white); }
 
+    /* Page title + content */
     h1{
+      margin: 0 0 28px;
       font-size: 34px;
-      line-height: 1.2;
+      font-weight: 600;
+      color: var(--white);
+    }
+
+    .qa{
+      padding-bottom: 70px; /* keep breathing room before footer */
+    }
+
+    .q{
+      margin: 26px 0 10px;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .a{
       margin: 0 0 18px;
-      font-weight: 800;
+      font-size: 15px;
+      color: var(--white-90);
+      max-width: 980px;
     }
 
-    h2{
-      font-size: 20px;
-      margin: 22px 0 10px;
-      font-weight: 800;
+    /* Footer (match screenshot style) */
+    footer{
+      margin-top: 18px;
+      padding: 44px 0 36px;
+      background: var(--radom-purple);
     }
 
-    p{
-      margin: 0 0 14px;
-      color: var(--muted);
-      font-size: 16px;
+    .footer-inner{
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 24px;
     }
 
-    .content{
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 22px 20px;
+    .footer-grid{
+      display:grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 44px;
+      align-items:start;
     }
 
-    .qa h2{ color: var(--text); }
-    .qa p{ color: var(--muted); }
+    .footer-logo{
+      font-size: 30px;
+      letter-spacing: 0.08em;
+      font-weight: 500;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .footer-block-title{
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--white);
+      margin: 0 0 10px;
+    }
+
+    .footer-text{
+      font-size: 13px;
+      color: var(--white-90);
+      margin: 0 0 16px;
+      line-height: 1.55;
+    }
+
+    .footer-links a{
+      display:block;
+      font-size: 13px;
+      color: var(--white-90);
+      margin: 0 0 12px;
+      font-weight: 600;
+    }
+
+    .footer-links a:hover{ color: var(--white); }
+
+    .rule{
+      margin: 34px 0 18px;
+      height: 1px;
+      background: var(--rule);
+      border: 0;
+    }
+
+    .footer-bottom{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 16px;
+      flex-wrap: wrap;
+      font-size: 12px;
+      color: var(--white-80);
+    }
+
+    .footer-bottom a{
+      color: var(--white-80);
+      font-weight: 600;
+      margin-left: 16px;
+    }
+    .footer-bottom a:hover{ color: var(--white); }
+
+    @media (max-width: 920px){
+      .footer-grid{ grid-template-columns: 1fr; }
+      .topbar{ flex-direction: column; align-items:flex-start; }
+      .nav{ justify-content:flex-start; }
+    }
   </style>
 </head>
-<body>
-  <div class="wrap">
-    <header>
-      <div class="brand">FAQ-PLASMA</div>
-      <nav class="nav">
-        <a href="https://www.radomcorp.com/" target="_blank" rel="noopener noreferrer">Visit radomcorp.com</a>
-      </nav>
-    </header>
 
-    <main class="content qa">
+<body>
+  <div class="container">
+    <div class="topbar">
+      <div class="brand">FAQ-PLASMA</div>
+      <div class="nav">
+        <a href="https://www.radomcorp.com/" target="_blank" rel="noopener noreferrer">Visit radomcorp.com</a>
+      </div>
+    </div>
+
+    <main class="qa">
       <h1>Frequently asked questions about Radom plasma technology</h1>
 
-      <h2>What is gas plasma?</h2>
-      <p>Gas plasma is an ionized gas formed when energy is applied to a neutral gas, creating a mixture of electrons, ions, neutrals, radicals, and excited species that can conduct electricity and drive chemical reactions. Depending on the energy input, it can be cold (non-thermal), where the ions and neutrals remain near ambient temperature, or hot (thermal), where the entire gas reaches very high temperatures, enabling applications such as material processing, chemical conversion, sterilization, and environmental treatment.</p>
+      <div class="q">What is gas plasma?</div>
+      <div class="a">Gas plasma is an ionized gas formed when energy is applied to a neutral gas, creating a mixture of electrons, ions, neutrals, radicals, and excited species that can conduct electricity and drive chemical reactions. Depending on the energy input, it can be cold (non-thermal), where the ions and neutrals remain near ambient temperature, or hot (thermal), where the entire gas reaches very high temperatures, enabling applications such as material processing, chemical conversion, sterilization, and environmental treatment.</div>
 
-      <h2>What are examples of plasma?</h2>
-      <p>Common examples of plasma include lightning, auroras, and the Sun and other stars, where gases are naturally ionized at high energy. Man-made examples include neon and fluorescent lights, arc welding plasmas, plasma cutting torches, and microwave or radio-frequency plasma used in laboratories and industry for materials processing and chemical conversion.</p>
+      <div class="q">What are examples of plasma?</div>
+      <div class="a">Common examples of plasma include lightning, auroras, and the Sun and other stars, where gases are naturally ionized at high energy. Man-made examples include neon and fluorescent lights, arc welding plasmas, plasma cutting torches, and microwave or radio-frequency plasma used in laboratories and industry for materials processing and chemical conversion.</div>
 
-      <h2>How long does plasma live?</h2>
-      <p>Plasma does not have a fixed “lifetime” on its own—it exists only as long as energy is supplied to sustain ionization. When the power is on, plasma can be maintained continuously for seconds, hours, or indefinitely in steady-state operation; when the power is turned off, the plasma typically recombines and disappears in microseconds to milliseconds, depending on pressure, gas composition, and temperature.</p>
+      <div class="q">How long does plasma live?</div>
+      <div class="a">Plasma does not have a fixed “lifetime” on its own—it exists only as long as energy is supplied to sustain ionization. When the power is on, plasma can be maintained continuously for seconds, hours, or indefinitely in steady-state operation; when the power is turned off, the plasma typically recombines and disappears in microseconds to milliseconds, depending on pressure, gas composition, and temperature.</div>
 
-      <h2>Why are plasma torches used to generate plasma?</h2>
-      <p>People create plasma in torches because it provides a highly energetic, controllable environment that can drive reactions and processes impossible or inefficient with conventional heat or chemistry. Plasma torches deliver extreme temperatures, reactive species, and strong electromagnetic coupling, enabling rapid chemical conversion, material synthesis, destruction of persistent contaminants, surface modification, and energy-efficient processing in applications such as waste treatment, gas reforming, materials production, and advanced research.</p>
+      <div class="q">Why are plasma torches used to generate plasma?</div>
+      <div class="a">People create plasma in torches because it provides a highly energetic, controllable environment that can drive reactions and processes impossible or inefficient with conventional heat or chemistry. Plasma torches deliver extreme temperatures, reactive species, and strong electromagnetic coupling, enabling rapid chemical conversion, material synthesis, destruction of persistent contaminants, surface modification, and energy-efficient processing in applications such as waste treatment, gas reforming, materials production, and advanced research.</div>
 
-      <h2>What type of plasma torches exist?</h2>
-      <p>Plasma torches are commonly classified by how plasma is generated and sustained. Arc plasma torches use an electrical arc between electrodes and are widely used for cutting, welding, and thermal processing. Inductively coupled plasma (ICP) torches use radio-frequency electromagnetic fields to generate plasma without electrodes, enabling clean, stable operation for analytical and materials applications. Microwave plasma torches use microwave energy to sustain plasma at atmospheric or reduced pressure and are valued for high efficiency, electrode-free operation, and precise control. DC and AC plasma torches are often used in high-power industrial systems, while low-pressure (cold) plasma sources are used for surface treatment and sterilization.</p>
+      <div class="q">What type of plasma torches exist?</div>
+      <div class="a">Plasma torches are commonly classified by how plasma is generated and sustained. Arc plasma torches use an electrical arc between electrodes and are widely used for cutting, welding, and thermal processing. Inductively coupled plasma (ICP) torches use radio-frequency electromagnetic fields to generate plasma without electrodes, enabling clean, stable operation for analytical and materials applications. Microwave plasma torches use microwave energy to sustain plasma at atmospheric or reduced pressure and are valued for high efficiency, electrode-free operation, and precise control. DC and AC plasma torches are often used in high-power industrial systems, while low-pressure (cold) plasma sources are used for surface treatment and sterilization.</div>
 
-      <h2>What’s the difference between cold plasma and hot plasma?</h2>
-      <p>Cold plasma operates at low bulk gas temperatures while maintaining highly energetic electrons, making it well suited for heat-sensitive applications, as cold plasma operates far from thermal equilibrium. In contrast, hot (thermal) plasma operates at very high gas temperatures, typically thousands of Kelvin, and approaches local thermodynamic equilibrium (LTE), where electrons, ions, and neutral species all possess high and comparable energies.</p>
+      <div class="q">What’s the difference between cold plasma and hot plasma?</div>
+      <div class="a">Cold plasma operates at low bulk gas temperatures while maintaining highly energetic electrons, making it well suited for heat-sensitive applications, as cold plasma operates far from thermal equilibrium. In contrast, hot (thermal) plasma operates at very high gas temperatures, typically thousands of Kelvin, and approaches local thermodynamic equilibrium (LTE), where electrons, ions, and neutral species all possess high and comparable energies.</div>
 
-      <h2>What temperature range does microwave plasma usually operate in?</h2>
-      <p>The typical temperature of microwave plasma depends on the operating regime: in thermal (hot) microwave plasma, gas temperatures are usually in the range of 3,000–6,000 K and can exceed 7,000 K in some configurations, while in non-thermal (cold) microwave plasma, electrons are highly energetic but the bulk gas temperature remains near room temperature up to a few hundred degrees Celsius; atmospheric-pressure microwave plasma torches used for materials processing, gas conversion, and waste treatment therefore commonly operate at thousands of Kelvin.</p>
+      <div class="q">What temperature range does microwave plasma usually operate in?</div>
+      <div class="a">The typical temperature of microwave plasma depends on the operating regime: in thermal (hot) microwave plasma, gas temperatures are usually in the range of 3,000–6,000 K and can exceed 7,000 K in some configurations, while in non-thermal (cold) microwave plasma, electrons are highly energetic but the bulk gas temperature remains near room temperature up to a few hundred degrees Celsius; atmospheric-pressure microwave plasma torches used for materials processing, gas conversion, and waste treatment therefore commonly operate at thousands of Kelvin.</div>
 
-      <h2>What kinds of gas-phase kinetics occur at the 3,000–6,000 K temperatures typical of thermal microwave plasma?</h2>
-      <p>At 3,000–6,000 K in a thermal (hot) microwave plasma, the gas undergoes extreme kinetic and chemical activity driven by very high particle energies. Molecules rapidly dissociate into atoms, and a significant fraction of atoms become ionized, forming a dense mixture of electrons, ions, radicals, and excited species. Collisions occur on nanosecond timescales, enabling fast reaction kinetics, high diffusion rates, and near-equilibrium chemistry. These conditions allow otherwise stable molecules (such as CO₂, CH₄, or PFAS) to break strong chemical bonds, drive endothermic reactions, and form new species, which is why hot microwave plasma is effective for gas reforming, materials synthesis, and destruction of persistent compounds.</p>
+      <div class="q">What kinds of gas-phase kinetics occur at the 3,000–6,000 K temperatures typical of thermal microwave plasma?</div>
+      <div class="a">At 3,000–6,000 K in a thermal (hot) microwave plasma, the gas undergoes extreme kinetic and chemical activity driven by very high particle energies. Molecules rapidly dissociate into atoms, and a significant fraction of atoms become ionized, forming a dense mixture of electrons, ions, radicals, and excited species. Collisions occur on nanosecond timescales, enabling fast reaction kinetics, high diffusion rates, and near-equilibrium chemistry. These conditions allow otherwise stable molecules (such as CO₂, CH₄, or PFAS) to break strong chemical bonds, drive endothermic reactions, and form new species, which is why hot microwave plasma is effective for gas reforming, materials synthesis, and destruction of persistent compounds.</div>
 
-      <h2>What are typical applications of microwave plasma?</h2>
-      <p>Atmospheric-pressure microwave plasma sources are used for surface treatment, nanoparticle and carbon black production, plasma-activated water (PAW) generation, microbial cleaning, nitrogen fixation and NOx production, PFAS destruction, wastewater treatment, CO₂ conversion, methane reforming, hydrogen production, waste-to-energy and waste-to-X processes, mining waste treatment, gasification, and high-enthalpy plasma research including plasma-assisted propulsion and reentry simulation.</p>
+      <div class="q">What are typical applications of microwave plasma?</div>
+      <div class="a">Atmospheric-pressure microwave plasma sources are used for surface treatment, nanoparticle and carbon black production, plasma-activated water (PAW) generation, microbial cleaning, nitrogen fixation and NOx production, PFAS destruction, wastewater treatment, CO₂ conversion, methane reforming, hydrogen production, waste-to-energy and waste-to-X processes, mining waste treatment, gasification, and high-enthalpy plasma research including plasma-assisted propulsion and reentry simulation.</div>
 
-      <h2>What is CerawaveTM and what difference does it make?</h2>
-      <p>Cerawave™ is Radom’s proprietary ceramic resonator used inside our microwave plasma torches to efficiently couple microwave energy into the plasma. Its unique chemical composition and dielectric properties reduce heat losses while shaping and stabilizing the electromagnetic field around the discharge, improving power transfer, ignition reliability, and plasma stability over a wide operating range. Compared to conventional applicator designs, Cerawave™ enables electrode-free operation, higher efficiency, and more repeatable plasma performance with reduced sensitivity to gas composition and flow variations.</p>
+      <div class="q">What is CerawaveTM and what difference does it make?</div>
+      <div class="a">Cerawave™ is Radom’s proprietary ceramic resonator used inside our microwave plasma torches to efficiently couple microwave energy into the plasma. Its unique chemical composition and dielectric properties reduce heat losses while shaping and stabilizing the electromagnetic field around the discharge, improving power transfer, ignition reliability, and plasma stability over a wide operating range. Compared to conventional applicator designs, Cerawave™ enables electrode-free operation, higher efficiency, and more repeatable plasma performance with reduced sensitivity to gas composition and flow variations.</div>
 
-      <h2>How can plasma be used to produce carbon black?</h2>
-      <p>In thermal plasma, hydrocarbon gases (e.g. methane) are rapidly decomposed at high temperature, forming carbon black nanoparticles and hydrogen.</p>
+      <div class="q">How can plasma be used to produce carbon black?</div>
+      <div class="a">In thermal plasma, hydrocarbon gases (e.g. methane) are rapidly decomposed at high temperature, forming carbon black nanoparticles and hydrogen.</div>
 
-      <h2>How does plasma destroy PFAS (and what results can be expected)?</h2>
-      <p>High-temperature plasma breaks strong C–F bonds through thermal dissociation and reactive plasma species, converting PFAS into simpler, non-persistent compounds. Laboratory and pilot results show very high destruction efficiency when operated under appropriate conditions.</p>
+      <div class="q">How does plasma destroy PFAS (and what results can be expected)?</div>
+      <div class="a">High-temperature plasma breaks strong C–F bonds through thermal dissociation and reactive plasma species, converting PFAS into simpler, non-persistent compounds. Laboratory and pilot results show very high destruction efficiency when operated under appropriate conditions.</div>
 
-      <h2>Can microwave-based plasma be used for sterilization?</h2>
-      <p>Microwave plasma can be used for sterilization, but hot atmospheric plasma is generally unsuitable for heat-sensitive materials. Low-pressure (cold) plasma may be viable, though it typically requires additional development and validation for regulated sterilization applications.</p>
+      <div class="q">Can microwave-based plasma be used for sterilization?</div>
+      <div class="a">Microwave plasma can be used for sterilization, but hot atmospheric plasma is generally unsuitable for heat-sensitive materials. Low-pressure (cold) plasma may be viable, though it typically requires additional development and validation for regulated sterilization applications.</div>
 
-      <h2>Can microwave plasma be used for air cleaning or pollutant removal?</h2>
-      <p>Yes. Microwave plasma can break down pollutants, VOCs, and hazardous compounds in air streams through a combination of high temperature and reactive plasma species. The effectiveness depends on gas composition, residence time, and system design; however, nitrogen oxides (NOₓ) may also form during the process and must be managed accordingly.</p>
+      <div class="q">Can microwave plasma be used for air cleaning or pollutant removal?</div>
+      <div class="a">Yes. Microwave plasma can break down pollutants, VOCs, and hazardous compounds in air streams through a combination of high temperature and reactive plasma species. The effectiveness depends on gas composition, residence time, and system design; however, nitrogen oxides (NOₓ) may also form during the process and must be managed accordingly.</div>
 
-      <h2>What is the minimum power plasma torch that Radom corporation provides?</h2>
-      <p>The minimum power plasma torch provided by Radom Corporation operates at 1000 W, which is sufficient to generate plasma temperatures of approximately 3000 °C and sustain gas flow rates on the order of 10–20 L/min, depending on the gas composition and operating conditions.</p>
+      <div class="q">What is the minimum power plasma torch that Radom corporation provides?</div>
+      <div class="a">The minimum power plasma torch provided by Radom Corporation operates at 1000 W, which is sufficient to generate plasma temperatures of approximately 3000 °C and sustain gas flow rates on the order of 10–20 L/min, depending on the gas composition and operating conditions.</div>
 
-      <h2>Why do I need argon to ignite Radom’s plasma torches?</h2>
-      <p>Argon is used to ignite Radom’s plasma torches because it ionizes easily and provides a stable, low-breakdown-voltage path for plasma initiation. Its inert nature and simple atomic structure allow reliable ignition at lower power. Once the plasma is established, the system can transition to the desired process gas (such as air, nitrogen, CO₂, or hydrocarbons) while maintaining stable operation.</p>
+      <div class="q">Why do I need argon to ignite Radom’s plasma torches?</div>
+      <div class="a">Argon is used to ignite Radom’s plasma torches because it ionizes easily and provides a stable, low-breakdown-voltage path for plasma initiation. Its inert nature and simple atomic structure allow reliable ignition at lower power. Once the plasma is established, the system can transition to the desired process gas (such as air, nitrogen, CO₂, or hydrocarbons) while maintaining stable operation.</div>
 
-      <h2>What are the typical components of the plasma torch system?</h2>
-      <p>In its minimum configuration, a 1000 W Radom plasma torch system consists of three main components: the power supply, the control module, and the plasma torch head. For higher-power systems (10 kW and above), additional components are required, such as auto-tuner and matching hardware, enhanced cooling, expanded gas handling, and safety subsystems to ensure stable and reliable operation.</p>
+      <div class="q">What are the typical components of the plasma torch system?</div>
+      <div class="a">In its minimum configuration, a 1000 W Radom plasma torch system consists of three main components: the power supply, the control module, and the plasma torch head. For higher-power systems (10 kW and above), additional components are required, such as auto-tuner and matching hardware, enhanced cooling, expanded gas handling, and safety subsystems to ensure stable and reliable operation.</div>
 
-      <h2>Can I integrate a Radom plasma torch into my own plasma infrastructure?</h2>
-      <p>Yes, it is possible. Radom plasma torches are built according to industrial standards and can be integrated into custom or existing plasma infrastructure. Depending on the specifics, some adjustments or additional components may be required to ensure proper compatibility, safety, and stable operation.</p>
+      <div class="q">Can I integrate a Radom plasma torch into my own plasma infrastructure?</div>
+      <div class="a">Yes, it is possible. Radom plasma torches are built according to industrial standards and can be integrated into custom or existing plasma infrastructure. Depending on the specifics, some adjustments or additional components may be required to ensure proper compatibility, safety, and stable operation.</div>
 
-      <h2>Does Radom corporation provide all required components for turnkey plasma torch set up and operation?</h2>
-      <p>Yes, Radom provides all the required components for turnkey operation. All components are fully integrated; all wiring is clearly labeled, and safety goggles are included. The system also comes with control software compatible with a standard laptop for immediate setup and operation.</p>
+      <div class="q">Does Radom corporation provide all required components for turnkey plasma torch set up and operation?</div>
+      <div class="a">Yes, Radom provides all the required components for turnkey operation. All components are fully integrated; all wiring is clearly labeled, and safety goggles are included. The system also comes with control software compatible with a standard laptop for immediate setup and operation.</div>
 
-      <h2>How difficult is it to connect the wiring and begin operating a Radom plasma unit?</h2>
-      <p>It is straightforward to set up. Radom provides a concise 10-minute video guide for connection and startup, along with a detailed user manual, and the Radom support team is always available for assistance via support@radomcorp.com or software@radomcorp.com.</p>
+      <div class="q">How difficult is it to connect the wiring and begin operating a Radom plasma unit?</div>
+      <div class="a">It is straightforward to set up. Radom provides a concise 10-minute video guide for connection and startup, along with a detailed user manual, and the Radom support team is always available for assistance via support@radomcorp.com or software@radomcorp.com.</div>
 
-      <h2>Is it difficult to operate a Radom plasma unit?</h2>
-      <p>Radom plasma units are designed for ease of use and can be ignited with a single button on the control panel. Ignition and operation can also be controlled through the software interface, where operating parameters can be easily adjusted.</p>
+      <div class="q">Is it difficult to operate a Radom plasma unit?</div>
+      <div class="a">Radom plasma units are designed for ease of use and can be ignited with a single button on the control panel. Ignition and operation can also be controlled through the software interface, where operating parameters can be easily adjusted.</div>
 
-      <h2>Can I change all the parameters of the plasma operation manually?</h2>
-      <p>In general, plasma parameters can be adjusted through the control module software; however, it is important to note that the default parameters provided by Radom are already optimized for the most efficient and stable plasma operation. These settings are the result of extensive experimental testing conducted over many hours by Radom engineers. Microwave plasma is a complex, non-equilibrium system that relies on precise physical resonance between the Cerawave™ plasma rings and the magnetron power supply. Because plasma behavior is highly sensitive, the conditions required for reliable ignition and sustained operation are unique and were established through extensive experimentation. The control software serves to synchronize and manage the operation of the system, but the core performance—often considered the “secret sauce”—comes from the plasma torch geometry, the chemical composition of the Cerawave™ rings, the magnetron frequency, and the auto-tuner technology.</p>
+      <div class="q">Can I change all the parameters of the plasma operation manually?</div>
+      <div class="a">In general, plasma parameters can be adjusted through the control module software; however, it is important to note that the default parameters provided by Radom are already optimized for the most efficient and stable plasma operation. These settings are the result of extensive experimental testing conducted over many hours by Radom engineers. Microwave plasma is a complex, non-equilibrium system that relies on precise physical resonance between the Cerawave™ plasma rings and the magnetron power supply. Because plasma behavior is highly sensitive, the conditions required for reliable ignition and sustained operation are unique and were established through extensive experimentation. The control software serves to synchronize and manage the operation of the system, but the core performance—often considered the “secret sauce”—comes from the plasma torch geometry, the chemical composition of the Cerawave™ rings, the magnetron frequency, and the auto-tuner technology.</div>
 
-      <h2>Which gases can be used to operate a plasma torch?</h2>
-      <p>A wide range of non-monatomic gases can be used. For the 1.5-kW system, air, nitrogen, and CO₂ are the most commonly used gases. Higher-power systems (10 kW and above) support a broader selection of process gases, including steam, methane, biogas, and hydrogen, depending on the application and system configuration.</p>
+      <div class="q">Which gases can be used to operate a plasma torch?</div>
+      <div class="a">A wide range of non-monatomic gases can be used. For the 1.5-kW system, air, nitrogen, and CO₂ are the most commonly used gases. Higher-power systems (10 kW and above) support a broader selection of process gases, including steam, methane, biogas, and hydrogen, depending on the application and system configuration.</div>
 
-      <h2>Is a plasma torch safe to operate?</h2>
-      <p>Plasma torch operation is safe when appropriate precautions are followed. The area around the plasma jet should be secured, and personnel should keep clear of the torch head during ignition due to high voltage. An exhaust system is required during operation, and UV-rated safety glasses must be worn whenever the plasma is active. Fire safety and high-voltage precautions should comply with standard industrial safety requirements.</p>
+      <div class="q">Is a plasma torch safe to operate?</div>
+      <div class="a">Plasma torch operation is safe when appropriate precautions are followed. The area around the plasma jet should be secured, and personnel should keep clear of the torch head during ignition due to high voltage. An exhaust system is required during operation, and UV-rated safety glasses must be worn whenever the plasma is active. Fire safety and high-voltage precautions should comply with standard industrial safety requirements.</div>
 
-      <h2>Why is an exhaust system required?</h2>
-      <p>When plasma is operated in air, nitrogen oxides (NOₓ) can be generated at elevated concentrations. These gases are hazardous to humans and corrosive to equipment, making proper ventilation and exhaust essential during operation.</p>
+      <div class="q">Why is an exhaust system required?</div>
+      <div class="a">When plasma is operated in air, nitrogen oxides (NOₓ) can be generated at elevated concentrations. These gases are hazardous to humans and corrosive to equipment, making proper ventilation and exhaust essential during operation.</div>
 
-      <h2>What electrical power requirements are needed to operate a plasma torch?</h2>
-      <p>For the 1.5-kW plasma torch unit, two power inputs are required: the magnetron power supply operates at 208–240 V AC, drawing 10–12 A at 50/60 Hz, while the controller supports 85–264 V AC, drawing up to 1 A at 47–63 Hz.</p>
+      <div class="q">What electrical power requirements are needed to operate a plasma torch?</div>
+      <div class="a">For the 1.5-kW plasma torch unit, two power inputs are required: the magnetron power supply operates at 208–240 V AC, drawing 10–12 A at 50/60 Hz, while the controller supports 85–264 V AC, drawing up to 1 A at 47–63 Hz.</div>
 
-      <h2>How heavy is a plasma torch system?</h2>
-      <p>The MIRA 1.5-kW system consists of three main components: the torch head (~4 kg), control module (~3.5 kg), and power supply (~6.5 kg), for a total weight of approximately 14 kg. This compact, benchtop configuration is well suited for laboratory use. The 10-kW system is larger but still compatible with lab environments, while the 100-kW system is an industrial-scale installation requiring dedicated power infrastructure and approximately 10 × 10 meters of space.</p>
+      <div class="q">How heavy is a plasma torch system?</div>
+      <div class="a">The MIRA 1.5-kW system consists of three main components: the torch head (~4 kg), control module (~3.5 kg), and power supply (~6.5 kg), for a total weight of approximately 14 kg. This compact, benchtop configuration is well suited for laboratory use. The 10-kW system is larger but still compatible with lab environments, while the 100-kW system is an industrial-scale installation requiring dedicated power infrastructure and approximately 10 × 10 meters of space.</div>
 
-      <h2>Can Radom’s torch be interfaced to some customize reactors?</h2>
-      <p>Yes. The Radom R&D team has experience integrating a 100-kW plasma torch with a gasifier for waste-to-energy conversion. In general, Radom plasma torches can be integrated into a variety of reactors, provided the appropriate interface and operating conditions are implemented.</p>
+      <div class="q">Can Radom’s torch be interfaced to some customize reactors?</div>
+      <div class="a">Yes. The Radom R&D team has experience integrating a 100-kW plasma torch with a gasifier for waste-to-energy conversion. In general, Radom plasma torches can be integrated into a variety of reactors, provided the appropriate interface and operating conditions are implemented.</div>
 
-      <h2>How quickly can I change power setpoints, and how long does the system take to settle?</h2>
-      <p>Power setpoints can be updated on the order of ~100 ms, and the system tracks changes well. Settling is fast, and ramping is optional—direct step changes are also supported.</p>
+      <div class="q">How quickly can I change power setpoints, and how long does the system take to settle?</div>
+      <div class="a">Power setpoints can be updated on the order of ~100 ms, and the system tracks changes well. Settling is fast, and ramping is optional—direct step changes are also supported.</div>
 
-      <h2>What is the actual controllable power range, and what’s the lowest power before the plasma extinguishes?</h2>
-      <p>The software-defined control range is typically 1000–1500 W (for the Mira system) to ensure stable operation. Hardware may support operation down to ~800 W, but lower limits are enforced in software to prevent plasma extinction.</p>
+      <div class="q">What is the actual controllable power range, and what’s the lowest power before the plasma extinguishes?</div>
+      <div class="a">The software-defined control range is typically 1000–1500 W (for the Mira system) to ensure stable operation. Hardware may support operation down to ~800 W, but lower limits are enforced in software to prevent plasma extinction.</div>
 
-      <h2>Can I configure or adjust gas pressure and flow safety limits in software?</h2>
-      <p>Yes. Minimum and maximum gas pressure and flow safety thresholds are fully configurable in software.</p>
+      <div class="q">Can I configure or adjust gas pressure and flow safety limits in software?</div>
+      <div class="a">Yes. Minimum and maximum gas pressure and flow safety thresholds are fully configurable in software.</div>
 
-      <h2>Can I start/stop the plasma and control power and gas flow remotely via LabVIEW, PLC, or Python?</h2>
-      <p>Yes. Full control—including ignition, shutdown, power, gas flows, and monitoring—is available via a DLL/SDK and can be accessed from LabVIEW, PLCs, Python, or other environments.</p>
+      <div class="q">Can I start/stop the plasma and control power and gas flow remotely via LabVIEW, PLC, or Python?</div>
+      <div class="a">Yes. Full control—including ignition, shutdown, power, gas flows, and monitoring—is available via a DLL/SDK and can be accessed from LabVIEW, PLCs, Python, or other environments.</div>
 
-      <h2>How fast can I ramp from startup power to 25/50/75/100%, and is ramping required or optional?</h2>
-      <p>Ramping speed is user-defined. You can ramp smoothly in steps or jump directly between minimum and maximum power—ramping is optional.</p>
+      <div class="q">How fast can I ramp from startup power to 25/50/75/100%, and is ramping required or optional?</div>
+      <div class="a">Ramping speed is user-defined. You can ramp smoothly in steps or jump directly between minimum and maximum power—ramping is optional.</div>
 
-      <h2>What update rate should I use for the mass flow controllers, and what accuracy should I expect?</h2>
-      <p>Mass flow controllers have a settling time of a few seconds. They are analytical-grade devices with accuracy on the order of a few percent, suitable for precise plasma control.</p>
+      <div class="q">What update rate should I use for the mass flow controllers, and what accuracy should I expect?</div>
+      <div class="a">Mass flow controllers have a settling time of a few seconds. They are analytical-grade devices with accuracy on the order of a few percent, suitable for precise plasma control.</div>
 
-      <h2>Do you support custom injectors (center injection, straight vs. bent), and will the standard ignition system still work?</h2>
-      <p>Yes. Custom quartz torches with center injection, straight or angled stems, and selectable injector diameters are supported. These designs remain compatible with the standard high-voltage ignitor.</p>
+      <div class="q">Do you support custom injectors (center injection, straight vs. bent), and will the standard ignition system still work?</div>
+      <div class="a">Yes. Custom quartz torches with center injection, straight or angled stems, and selectable injector diameters are supported. These designs remain compatible with the standard high-voltage ignitor.</div>
 
-      <h2>After purchase, how do we integrate your system into our control architecture—can the interface be modified, and is source code available?</h2>
-      <p>All major functions are exposed via a DLL/SDK. Firmware upgrades can be performed via USB. Source code is not provided, but example code (e.g., Python) and integration support are available.</p>
+      <div class="q">After purchase, how do we integrate your system into our control architecture—can the interface be modified, and is source code available?</div>
+      <div class="a">All major functions are exposed via a DLL/SDK. Firmware upgrades can be performed via USB. Source code is not provided, but example code (e.g., Python) and integration support are available.</div>
 
-      <h2>Does torch orientation matter (downward vs. sideways), and are there any mechanical or operational constraints?</h2>
-      <p>No. The torch can operate in any orientation, including downward facing, without special mechanical or operational considerations.</p>
+      <div class="q">Does torch orientation matter (downward vs. sideways), and are there any mechanical or operational constraints?</div>
+      <div class="a">No. The torch can operate in any orientation, including downward facing, without special mechanical or operational considerations.</div>
 
-      <h2>Can you provide CAD/STEP models and mounting-hole references so we can design our reactor interface accurately?</h2>
-      <p>Yes. STEP files and dimensional drawings showing external geometry, flanges, and mounting-hole locations can be provided for accurate mechanical integration.</p>
+      <div class="q">Can you provide CAD/STEP models and mounting-hole references so we can design our reactor interface accurately?</div>
+      <div class="a">Yes. STEP files and dimensional drawings showing external geometry, flanges, and mounting-hole locations can be provided for accurate mechanical integration.</div>
 
-      <h2>Does Radom deliver plasma torches internationally?</h2>
-      <p>Yes. Radom delivers plasma torch systems both within the United States and internationally, subject to standard export regulations and logistics requirements.</p>
+      <div class="q">Does Radom deliver plasma torches internationally?</div>
+      <div class="a">Yes. Radom delivers plasma torch systems both within the United States and internationally, subject to standard export regulations and logistics requirements.</div>
 
-      <h2>Can a plasma system be operated outdoors or outside a building?</h2>
-      <p>Yes, plasma systems can be operated outdoors or outside a building, provided they are properly protected from adverse weather conditions, have adequate ventilation, and meet electrical, temperature, humidity, and safety requirements.</p>
+      <div class="q">Can a plasma system be operated outdoors or outside a building?</div>
+      <div class="a">Yes, plasma systems can be operated outdoors or outside a building, provided they are properly protected from adverse weather conditions, have adequate ventilation, and meet electrical, temperature, humidity, and safety requirements.</div>
 
-      <h2>Is it possible to build my own plasma torch?</h2>
-      <p>In principle, yes, but building a reliable and stable plasma torch requires deep expertise in plasma physics, microwave engineering, materials, and safety. Radom systems are the result of years of extensive R&D and testing to ensure stable, repeatable, and safe operation.</p>
+      <div class="q">Is it possible to build my own plasma torch?</div>
+      <div class="a">In principle, yes, but building a reliable and stable plasma torch requires deep expertise in plasma physics, microwave engineering, materials, and safety. Radom systems are the result of years of extensive R&D and testing to ensure stable, repeatable, and safe operation.</div>
 
-      <h2>Does Radom have distributors in the United States and internationally?</h2>
-      <p>Yes. Radom works with distributors and partners in the United States and internationally. Availability depends on the region and product line. Please contact radom@radomcorp.com for more information.</p>
+      <div class="q">Does Radom have distributors in the United States and internationally?</div>
+      <div class="a">Yes. Radom works with distributors and partners in the United States and internationally. Availability depends on the region and product line. Please contact radom@radomcorp.com for more information.</div>
 
-      <h2>Is Radom’s plasma technology protected by patents?</h2>
-      <p>Yes. Radom’s plasma technology, including key design elements such as Cerawave™ components, is protected by patents and proprietary know-how.</p>
+      <div class="q">Is Radom’s plasma technology protected by patents?</div>
+      <div class="a">Yes. Radom’s plasma technology, including key design elements such as Cerawave™ components, is protected by patents and proprietary know-how.</div>
 
-      <h2>Does Radom provide a warranty on its plasma systems?</h2>
-      <p>Yes. Radom provides a standard warranty on its plasma systems. Specific terms and coverage depend on the product and contract.</p>
+      <div class="q">Does Radom provide a warranty on its plasma systems?</div>
+      <div class="a">Yes. Radom provides a standard warranty on its plasma systems. Specific terms and coverage depend on the product and contract.</div>
 
-      <h2>Does Radom offer Net 30 payment terms?</h2>
-      <p>Net 30 payment terms may be available for qualified customers, subject to approval and contract terms.</p>
+      <div class="q">Does Radom offer Net 30 payment terms?</div>
+      <div class="a">Net 30 payment terms may be available for qualified customers, subject to approval and contract terms.</div>
 
-      <h2>Does Radom have a dedicated service and support team?</h2>
-      <p>Yes. Radom has an experienced service and support team available to assist with installation, operation, troubleshooting, and maintenance.</p>
+      <div class="q">Does Radom have a dedicated service and support team?</div>
+      <div class="a">Yes. Radom has an experienced service and support team available to assist with installation, operation, troubleshooting, and maintenance.</div>
 
-      <h2>Does Radom license its plasma technology?</h2>
-      <p>In certain cases, Radom may license aspects of its technology, depending on the application, partnership structure, and strategic alignment.</p>
+      <div class="q">Does Radom license its plasma technology?</div>
+      <div class="a">In certain cases, Radom may license aspects of its technology, depending on the application, partnership structure, and strategic alignment.</div>
 
-      <h2>Can I develop my own software to control the plasma torch?</h2>
-      <p>Yes. Radom provides an SDK/DLL interface that allows customers to develop their own control software using platforms such as LabVIEW, PLCs, or Python.</p>
+      <div class="q">Can I develop my own software to control the plasma torch?</div>
+      <div class="a">Yes. Radom provides an SDK/DLL interface that allows customers to develop their own control software using platforms such as LabVIEW, PLCs, or Python.</div>
 
-      <h2>Does Radom provide PLC-based control units for high-power plasma torches, and what types are available?</h2>
-      <p>Yes. For higher-power plasma systems (10 kW and above), Radom provides industrial PLC-based control units designed to manage complex interlocks, safety functions, and process integration. The PLC platform supported by Radom is Phoenix Contact.</p>
+      <div class="q">Does Radom provide PLC-based control units for high-power plasma torches, and what types are available?</div>
+      <div class="a">Yes. For higher-power plasma systems (10 kW and above), Radom provides industrial PLC-based control units designed to manage complex interlocks, safety functions, and process integration. The PLC platform supported by Radom is Phoenix Contact.</div>
 
-      <h2>Can I safely integrate a high-power plasma torch into my own PLC and infrastructure?</h2>
-      <p>Yes. It is possible to integrate our high-power plasma torches into your own PLC infrastructure; however, additional configuration, validation, and testing are required to ensure reliable, stable, and safe operation.</p>
+      <div class="q">Can I safely integrate a high-power plasma torch into my own PLC and infrastructure?</div>
+      <div class="a">Yes. It is possible to integrate our high-power plasma torches into your own PLC infrastructure; however, additional configuration, validation, and testing are required to ensure reliable, stable, and safe operation.</div>
     </main>
   </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">RADOM</div>
+
+          <div class="footer-block-title">Address:</div>
+          <div class="footer-text">N27W23676 Paul Rd, Pewaukee, WI 53072, USA</div>
+
+          <div class="footer-block-title">Contact:</div>
+          <div class="footer-text">1-855-PLASMA-0 (1-855-752-7620)<br/>inquiries@radomcorp.com</div>
+        </div>
+
+        <div class="footer-links">
+          <div class="footer-block-title">Plasma Source Products</div>
+          <a href="https://www.radomcorp.com/" target="_blank" rel="noopener noreferrer">1.5 kW Altair &amp; Mira</a>
+          <a href="https://www.radomcorp.com/" target="_blank" rel="noopener noreferrer">10 kW Polaris</a>
+          <a href="https://www.radomcorp.com/" target="_blank" rel="noopener noreferrer">100 kW Sirius</a>
+        </div>
+
+        <div class="footer-links">
+          <a href="https://www.radomcorp.com/" target="_blank" rel="noopener noreferrer">Applications</a>
+          <a href="https://www.radomcorp.com/" target="_blank" rel="noopener noreferrer">Technology</a>
+          <a href="https://www.radomcorp.com/" target="_blank" rel="noopener noreferrer">Radom Instruments</a>
+          <a href="https://www.radomcorp.com/contact" target="_blank" rel="noopener noreferrer">Contact Us</a>
+        </div>
+      </div>
+
+      <hr class="rule" />
+
+      <div class="footer-bottom">
+        <div>© 2026 Radom Corp. All rights reserved.</div>
+        <div>
+          <a href="https://www.radomcorp.com/privacy-policy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+          <a href="https://www.radomcorp.com/terms-of-service" target="_blank" rel="noopener noreferrer">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
